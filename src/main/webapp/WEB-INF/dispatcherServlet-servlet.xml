@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+<!-- springmvc配置文件  网站跳转逻辑的控制 -->
+
+<!-- 1.扫描组件  只扫描控制器 -->
+<context:component-scan base-package="com.atguigu.crud.controller" use-default-filters="false">
+	<!-- 只扫描控制器 -->
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+
+
+<!-- 2.配置视图解析器  方便页面返回 -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"></property>
+	<property name="suffix" value=".jsp"></property>
+</bean>
+
+
+
+<!--3.两个标配  -->
+<!-- 将mvc不能处理的请求交给tomcat 这样动态静态资源都能访问 -->
+<mvc:default-servlet-handler/>
+<!-- 能支持springmvc更高级的一些功能，例如JSR303校验，快捷ajax请求。。。。映射动态请求 -->
+<mvc:annotation-driven/>
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
